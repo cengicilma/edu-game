@@ -5,10 +5,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import logic.QuestionGenerator;
+import model.Question;
+
 public class MainGameScreen extends AppCompatActivity {
+
+    public static final String QUESTIONS_ASKED = "edugame.QUESTIONS_ASKED";
+    public static final String CORRECT_ANSWERS = "edugame.CORRECT_ANSWERS";
+    public static final String WRONG_ANSWERS = "edugame.WRONG_ANSWERS";
 
     private String difficulty;
     private String gameTimeText;
@@ -16,6 +24,13 @@ public class MainGameScreen extends AppCompatActivity {
     private TextView txtTimeInSeconds;
     private int time;
     private CountDownTimer cTimer;
+
+    QuestionGenerator questionGenerator = new QuestionGenerator();
+    Question questionInstance = new Question();
+
+    int numberOfQuestions = 0;
+    int numberOfCorrectAnswers = 0;
+    int numberOfWrongAnswers = 0;
 
 
     @Override
@@ -43,6 +58,21 @@ public class MainGameScreen extends AppCompatActivity {
         txtTimeInSeconds.setText(gameTimeInSeconds);
 
         startTimer(Integer.parseInt(gameTimeInSeconds));
+
+        //Set initial question and answers
+        questionInstance = questionGenerator.generateQuestion(difficulty, questionInstance);
+        TextView txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestion.setText(questionInstance.getCalculation());
+
+        TextView choiceButton1 = findViewById(R.id.btnAnswer1);
+        TextView choiceButton2 = findViewById(R.id.btnAnswer2);
+        TextView choiceButton3 = findViewById(R.id.btnAnswer3);
+        TextView choiceButton4 = findViewById(R.id.btnAnswer4);
+
+        choiceButton1.setText(questionInstance.getAnswer1());
+        choiceButton2.setText(questionInstance.getAnswer2());
+        choiceButton3.setText(questionInstance.getAnswer3());
+        choiceButton4.setText(questionInstance.getAnswer4());
     }
 
 
@@ -57,7 +87,9 @@ public class MainGameScreen extends AppCompatActivity {
                 double d = 0.0;
                 txtTimeInSeconds.setText((String.format("%.1f", d)));
                 Intent i = new Intent(MainGameScreen.this, FinishedGameActivity.class);
-                //TODO add results to intent
+                i.putExtra(QUESTIONS_ASKED, numberOfQuestions);
+                i.putExtra(CORRECT_ANSWERS, numberOfCorrectAnswers);
+                i.putExtra(WRONG_ANSWERS, numberOfWrongAnswers);
                 startActivity(i);
                 finish();
             }
@@ -78,4 +110,40 @@ public class MainGameScreen extends AppCompatActivity {
         finish();
         super.onBackPressed();
     }
+
+    public void sumbitAnswer(View view) {
+        String givenAnswer = String.valueOf(((TextView) view).getText());
+        String correctAnswer  = questionInstance.getCorrectAnswer();
+        checkAnswer(givenAnswer, correctAnswer);
+        createNewQuestion();
+    }
+
+    public void checkAnswer(String givenAnswer, String correctAnswer) {
+        if(givenAnswer.equals(correctAnswer)) {
+            numberOfCorrectAnswers++;
+        }
+        else {
+            numberOfWrongAnswers++;
+        }
+        numberOfQuestions++;
+    }
+
+    public void createNewQuestion() {
+        Question newQuestion = new Question();
+        questionInstance = questionGenerator.generateQuestion(difficulty, newQuestion);
+
+        TextView txtQuestion = findViewById(R.id.txtQuestion);
+        txtQuestion.setText(questionInstance.getCalculation());
+
+        TextView choiceButton1 = findViewById(R.id.btnAnswer1);
+        TextView choiceButton2 = findViewById(R.id.btnAnswer2);
+        TextView choiceButton3 = findViewById(R.id.btnAnswer3);
+        TextView choiceButton4 = findViewById(R.id.btnAnswer4);
+
+        choiceButton1.setText(questionInstance.getAnswer1());
+        choiceButton2.setText(questionInstance.getAnswer2());
+        choiceButton3.setText(questionInstance.getAnswer3());
+        choiceButton4.setText(questionInstance.getAnswer4());
+    }
+
 }
