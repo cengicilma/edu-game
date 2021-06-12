@@ -7,4 +7,53 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="t1_Teal">#008080</color>
+    <color name="t2_Jungle_Green">#239895</color>
+    <color name="t3_Veredigris">#47B0AA</color>
+    <color name="t4_Medium_Aquamarine">#6AC9BE</color>
+    <color name="t5_Pale_Robin_Egg_Blue">#8EE1D3</color>
+    <color name="t6_Pale_Blue">#B1F9E8</color>
+
+    <!-- Water For Drinks Color Palette -->
+    <color name="WFD1_Vista_Blue">#8498CF</color>
+    <color name="WFD2_Pale_Cornflower_Blue">#A6CDF0</color>
+    <color name="WFD3_Blizzard_Blue">#B5E6F2</color>
+    <color name="WFD4_Water">#D4F1F8</color>
+    <color name="WFD5_Diamond">#C4ECF4</color>
+
+    <!-- Info Elements Color Palette -->
+    <color name="Verdigris">#45ADAE</color>
+    <color name="Sunglow">#FEC72E</color>
+    <color name="Desire">#E23956</color>
+
+    <!-- Soft & Relaxed Color Palette -->
+    <color name="Beige">#FAF3DF</color>
+    <color name="Flesh">#FDE3D5</color>
+    <color name="Champagne_Pink">#F1D0CD</color>
+    <color name="Black_Shadows">#BDACBD</color>
+    <color name="Manatee">#9F9BB0</color>
+    <color name="Lavander_Gray">#BABBD1</color>
+
+    <!-- Vivid Yelow Gradient Color Palette -->
+    <color name="VYG1_Philippine_Yellow">#FFC903</color>
+    <color name="VYG2_Ripe_Mango">#FFD422</color>
+    <color name="VYG3_Gargoyle_Gas">#FFDF41</color>
+    <color name="VYG4_Corn">#FFE961</color>
+    <color name="VYG5_Crayolas_Yellow">#FFF480</color>
+    <color name="VYG6_Crayolas_Lemon_Yellow">#FFFF9F</color>
+
+    <color name="Pastel_Yellow">#FFFF9F</color>
+
+    <!-- Days Of Relaxation Color Palette -->
+    <color name="DOR1_Linen">#FFEEE0</color>
+    <color name="DOR2_Pale_Silver">#D9BABF</color>
+    
+    <!-- Shades Of Teal Color Palette -->
+    <color name="SOT1_Teal">#008080</color>
+    <color name="SOT2_Medim_Aquamarine">#6EC6BA</color>
+    <color name="SOT3_Teal_Deer">#99E6B3</color>
+    <color name="SOT4_Tea_Green">#CCF1D2</color>
+
+
 </resources>

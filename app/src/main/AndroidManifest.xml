@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EduGame">
-        <activity android:name=".FinishedGameActivity"></activity>
-        <activity android:name=".MainGameScreen" />
+        <activity android:name=".FinishedGameActivity" />
+        <activity android:name=".MainGameScreenActivity" />
         <activity android:name=".GameModeActivity" />
         <activity android:name=".GameDifficultyActivity" />
         <activity android:name=".MainActivity">

@@ -12,11 +12,12 @@ import android.widget.Toast;
 import logic.QuestionGenerator;
 import model.Question;
 
-public class MainGameScreen extends AppCompatActivity {
+public class MainGameScreenActivity extends AppCompatActivity {
 
     public static final String QUESTIONS_ASKED = "edugame.QUESTIONS_ASKED";
     public static final String CORRECT_ANSWERS = "edugame.CORRECT_ANSWERS";
     public static final String WRONG_ANSWERS = "edugame.WRONG_ANSWERS";
+    public static final String RESULTS = "edugame.RESULTS";
 
     private String difficulty;
     private String gameTimeText;
@@ -86,10 +87,11 @@ public class MainGameScreen extends AppCompatActivity {
             public void onFinish() {
                 double d = 0.0;
                 txtTimeInSeconds.setText((String.format("%.1f", d)));
-                Intent i = new Intent(MainGameScreen.this, FinishedGameActivity.class);
+                Intent i = new Intent(MainGameScreenActivity.this, FinishedGameActivity.class);
                 i.putExtra(QUESTIONS_ASKED, numberOfQuestions);
                 i.putExtra(CORRECT_ANSWERS, numberOfCorrectAnswers);
                 i.putExtra(WRONG_ANSWERS, numberOfWrongAnswers);
+                i.putExtra(RESULTS, finalResult());
                 startActivity(i);
                 finish();
             }
@@ -105,7 +107,7 @@ public class MainGameScreen extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Toast.makeText(MainGameScreen.this, "You quit the game!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainGameScreenActivity.this, "You quit the game!", Toast.LENGTH_SHORT).show();
         cancelTimer();
         finish();
         super.onBackPressed();
@@ -144,6 +146,12 @@ public class MainGameScreen extends AppCompatActivity {
         choiceButton2.setText(questionInstance.getAnswer2());
         choiceButton3.setText(questionInstance.getAnswer3());
         choiceButton4.setText(questionInstance.getAnswer4());
+    }
+
+    public String finalResult() {
+        double result = numberOfCorrectAnswers/numberOfQuestions;
+        String s = Double.toString(result);
+        return s;
     }
 
 }

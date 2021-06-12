@@ -19,21 +19,21 @@ public class GameDifficultyActivity extends AppCompatActivity {
 
     public void openLevelEasy(View view) {
         Intent intent = new Intent(this, GameModeActivity.class);
-        String level = "Easy";
+        String level = "EASY";
         intent.putExtra(GAME_DIFFICULTY, level);
         startActivity(intent);
     }
 
     public void openLevelMedium(View view) {
         Intent intent = new Intent(this, GameModeActivity.class);
-        String level = "Medium";
+        String level = "MEDIUM";
         intent.putExtra(GAME_DIFFICULTY, level);
         startActivity(intent);
     }
 
     public void openLevelHard(View view) {
         Intent intent = new Intent(this, GameModeActivity.class);
-        String level = "Hard";
+        String level = "HARD";
         intent.putExtra(GAME_DIFFICULTY, level);
         startActivity(intent);
     }

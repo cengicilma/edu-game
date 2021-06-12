@@ -17,4 +17,7 @@
     <string name="button_30sec">30 SECONDS</string>
     <string name="button_1min">1 MINUTE</string>
     <string name="button_2min">2 MINUTES</string>
+    <string name="button_new_game">NEW GAME</string>
+    <string name="button_home">HOME</string>
+    <string name="button_exit">EXIT</string>
 </resources>

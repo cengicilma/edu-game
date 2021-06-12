@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,15 +11,16 @@ import model.Question;
 public class QuestionGenerator {
     final String[] easyOptions = {"+", "-"};
     final String[] mediumOptions = {"+", "-", "*"};
+    final String[] hardOptions = {"+", "-", "*"};
 
     public Question generateQuestion (String difficulty, Question questionInstance) {
-        if("Easy".equals(difficulty)) {
+        if("EASY".equals(difficulty)) {
             questionInstance = makeEasyQuestion(questionInstance);
         }
-        else if ("Medium".equals(difficulty)) {
+        else if ("MEDIUM".equals(difficulty)) {
             questionInstance = makeMediumQuestion(questionInstance);
         }
-        else if ("Hard".equals(difficulty)) {
+        else if ("HARD".equals(difficulty)) {
             questionInstance = makeHardQuestion(questionInstance);
         }
         return questionInstance;
@@ -29,42 +31,41 @@ public class QuestionGenerator {
         Random randomOperation = new Random();
         int easyIndex = randomOperation.nextInt(easyOptions.length);
         String randomOperationChosen = easyOptions[easyIndex];
+
         //making an equation
         String firstNumber = createRandomNumber(-9, 9);
-        if (!firstNumber.equals("0")) {
-            String secondNumber = createRandomNumber(-9, 9);
-        } else {
-
-        }
         String secondNumber = createRandomNumber(-9, 9);
         String quest = firstNumber + randomOperationChosen + secondNumber;
+
         //calculating correct answer
         double correctAnswer = eval(quest);
         int correctAnswerInInt = (int) correctAnswer;
+
         String correctAnswerInString = String.valueOf(correctAnswerInInt);
-        //calculating wrong answer 1 - an opposite answer
-        String oppositeOperation = "-";
-        if("+".equals(randomOperationChosen)){
-            oppositeOperation = "-";
-        } else {
-            oppositeOperation = "+";
-        }
+
+        //calculating wrongAnswer1 - an opposite answer
+        String oppositeOperation = oppositeOperation(randomOperationChosen);
         String oppositeQuestion = firstNumber + oppositeOperation + secondNumber;
         double wrongAnswer = eval(oppositeQuestion);
         int wrongAnswer1InInt = (int) wrongAnswer;
         String wrongAnswer1InString = String.valueOf(wrongAnswer1InInt);
-        //calculating wrong answer 2 - increase result by 1
+
+        //calculating wrongAnswer2 - increase result by 1
         int wrongAnswer2InInt = correctAnswerInInt + 1;
         String wrongAnswer2InString = String.valueOf(wrongAnswer2InInt);
-        //calculating wrong answer 3 - decrease result by 1
+
+        //calculating wrongAnswer3 - decrease result by 1
         int wrongAnswer3InInt = correctAnswerInInt - 1;
         String wrongAnswer3InString = String.valueOf(wrongAnswer3InInt);
+
         //shuffleAnswers
         String[] answerOptions = {correctAnswerInString, wrongAnswer1InString, wrongAnswer2InString, wrongAnswer3InString};
+        answerOptions = shuffleAnswers(answerOptions);
 
-        List<String> strList = Arrays.asList(answerOptions);
+        /*List<String> strList = Arrays.asList(answerOptions);
         Collections.shuffle(strList);
-        answerOptions = strList.toArray(new String[strList.size()]);
+        answerOptions = strList.toArray(new String[strList.size()]);*/
+
         //set answers
         question.setAnswer1(answerOptions[0]);
         question.setAnswer2(answerOptions[1]);
@@ -72,45 +73,50 @@ public class QuestionGenerator {
         question.setAnswer4(answerOptions[3]);
         question.setCorrectAnswer(correctAnswerInString);
         question.setCalculation(quest);
+
         return question;
     }
 
     public Question makeMediumQuestion(Question question) {
         //choosing Math operation
         Random randomOperation = new Random();
-        int easyIndex = randomOperation.nextInt(easyOptions.length);
-        String randomOperationChosen = easyOptions[easyIndex];
+        int easyIndex = randomOperation.nextInt(mediumOptions.length);
+        String randomOperationChosen = mediumOptions[easyIndex];
+
         //making an equation
-        String firstNumber = createRandomNumber(-9, 9);
-        String secondNumber = createRandomNumber(-9, 9);
+        String firstNumber = createRandomNumber(-19, 19);
+        String secondNumber = createRandomNumber(-19, 19);
         String quest = firstNumber + randomOperationChosen + secondNumber;
+
         //calculating correct answer
         double correctAnswer = eval(quest);
         int correctAnswerInInt = (int) correctAnswer;
         String correctAnswerInString = String.valueOf(correctAnswerInInt);
-        //calculating wrong answer 1 - an opposite answer
-        String oppositeOperation = "-";
-        if("+".equals(randomOperationChosen)){
-            oppositeOperation = "-";
-        } else {
-            oppositeOperation = "+";
-        }
+
+        //calculating wrongAnswer1 - an opposite answer
+        String oppositeOperation = oppositeOperation(randomOperationChosen);
         String oppositeQuestion = firstNumber + oppositeOperation + secondNumber;
         double wrongAnswer = eval(oppositeQuestion);
         int wrongAnswer1InInt = (int) wrongAnswer;
         String wrongAnswer1InString = String.valueOf(wrongAnswer1InInt);
-        //calculating wrong answer 2 - increase result by 1
+
+        //calculating wrongAnswer2 - increase result by 1
         int wrongAnswer2InInt = correctAnswerInInt + 1;
         String wrongAnswer2InString = String.valueOf(wrongAnswer2InInt);
-        //calculating wrong answer 3 - decrease result by 1
+
+        //calculating wrongAnswer3 - decrease result by 1
         int wrongAnswer3InInt = correctAnswerInInt - 1;
         String wrongAnswer3InString = String.valueOf(wrongAnswer3InInt);
+
         //shuffleAnswers
         String[] answerOptions = {correctAnswerInString, wrongAnswer1InString, wrongAnswer2InString, wrongAnswer3InString};
+        answerOptions = shuffleAnswers(answerOptions);
 
+        /*
         List<String> strList = Arrays.asList(answerOptions);
         Collections.shuffle(strList);
         answerOptions = strList.toArray(new String[strList.size()]);
+*/
         //set answers
         question.setAnswer1(answerOptions[0]);
         question.setAnswer2(answerOptions[1]);
@@ -118,45 +124,54 @@ public class QuestionGenerator {
         question.setAnswer4(answerOptions[3]);
         question.setCorrectAnswer(correctAnswerInString);
         question.setCalculation(quest);
+
         return question;
     }
 
     public Question makeHardQuestion(Question question) {
         //choosing Math operation
         Random randomOperation = new Random();
-        int easyIndex = randomOperation.nextInt(easyOptions.length);
-        String randomOperationChosen = easyOptions[easyIndex];
+        int easyIndex1 = randomOperation.nextInt(hardOptions.length);
+        int easyIndex2 = randomOperation.nextInt(hardOptions.length);
+        String randomOperationChosen1 = hardOptions[easyIndex1];
+        String randomOperationChosen2 = hardOptions[easyIndex2];
+
         //making an equation
-        String firstNumber = createRandomNumber(-9, 9);
-        String secondNumber = createRandomNumber(-9, 9);
-        String quest = firstNumber + randomOperationChosen + secondNumber;
+        String firstNumber = createRandomNumber(-19, 19);
+        String secondNumber = createRandomNumber(-19, 19);
+        String thirdNumber = createRandomNumber(-19, 19);
+
+        String quest = firstNumber + randomOperationChosen1 + secondNumber + randomOperationChosen2 + thirdNumber;
+
         //calculating correct answer
         double correctAnswer = eval(quest);
         int correctAnswerInInt = (int) correctAnswer;
         String correctAnswerInString = String.valueOf(correctAnswerInInt);
-        //calculating wrong answer 1 - an opposite answer
-        String oppositeOperation = "-";
-        if("+".equals(randomOperationChosen)){
-            oppositeOperation = "-";
-        } else {
-            oppositeOperation = "+";
-        }
-        String oppositeQuestion = firstNumber + oppositeOperation + secondNumber;
+
+        //calculating wrongAnswer1 - an opposite answer
+        String oppositeOperation1 = oppositeOperation(randomOperationChosen1);
+        String oppositeOperation2 = oppositeOperation(randomOperationChosen2);
+        String oppositeQuestion = firstNumber + oppositeOperation1 + secondNumber + oppositeOperation2 + thirdNumber;
         double wrongAnswer = eval(oppositeQuestion);
         int wrongAnswer1InInt = (int) wrongAnswer;
         String wrongAnswer1InString = String.valueOf(wrongAnswer1InInt);
-        //calculating wrong answer 2 - increase result by 1
+
+        //calculating wrongAnswer2 - increase result by 1
         int wrongAnswer2InInt = correctAnswerInInt + 1;
         String wrongAnswer2InString = String.valueOf(wrongAnswer2InInt);
-        //calculating wrong answer 3 - decrease result by 1
+
+        //calculating wrongAnswer3 - decrease result by 1
         int wrongAnswer3InInt = correctAnswerInInt - 1;
         String wrongAnswer3InString = String.valueOf(wrongAnswer3InInt);
+
         //shuffleAnswers
         String[] answerOptions = {correctAnswerInString, wrongAnswer1InString, wrongAnswer2InString, wrongAnswer3InString};
+        answerOptions = shuffleAnswers(answerOptions);
 
-        List<String> strList = Arrays.asList(answerOptions);
+        /*List<String> strList = Arrays.asList(answerOptions);
         Collections.shuffle(strList);
-        answerOptions = strList.toArray(new String[strList.size()]);
+        answerOptions = strList.toArray(new String[strList.size()]);*/
+
         //set answers
         question.setAnswer1(answerOptions[0]);
         question.setAnswer2(answerOptions[1]);
@@ -164,7 +179,17 @@ public class QuestionGenerator {
         question.setAnswer4(answerOptions[3]);
         question.setCorrectAnswer(correctAnswerInString);
         question.setCalculation(quest);
+
         return question;
+    }
+
+    public String[] shuffleAnswers(String[] answers) {
+        //shuffle answers
+        List<String> strList = Arrays.asList(answers);
+        Collections.shuffle(strList);
+        answers = strList.toArray(new String[strList.size()]);
+
+        return answers;
     }
 
     public Question doTheMathFull (String quest, Question question) {
@@ -186,6 +211,12 @@ public class QuestionGenerator {
         } else {
             return String.valueOf(result);
         }
+    }
+
+    public String oppositeOperation(String s) {
+        if("+".equals(s)){ return "-"; }
+        else if ("-".equals(s)){ return "*"; }
+        else { return "+"; }
     }
 
     public static double eval(final String str) {

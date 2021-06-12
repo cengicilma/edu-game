@@ -30,7 +30,7 @@ public class GameModeActivity extends AppCompatActivity {
     }
 
     public void openGameMode30sec(View view) {
-        Intent intent = new Intent(this, MainGameScreen.class);
+        Intent intent = new Intent(this, MainGameScreenActivity.class);
         intent.putExtra(GAME_DIFFICULTY, difficulty);
         intent.putExtra(GAME_MODE_TEXT, "30 seconds");
         intent.putExtra(GAME_MODE, "5"); //for testing, later will be 30
@@ -38,7 +38,7 @@ public class GameModeActivity extends AppCompatActivity {
     }
 
     public void openGameMode1min(View view) {
-        Intent intent = new Intent(this, MainGameScreen.class);
+        Intent intent = new Intent(this, MainGameScreenActivity.class);
         intent.putExtra(GAME_DIFFICULTY, difficulty);
         intent.putExtra(GAME_MODE_TEXT, "1 minute");
         intent.putExtra(GAME_MODE, "60");
@@ -46,11 +46,10 @@ public class GameModeActivity extends AppCompatActivity {
     }
 
     public void openGameMode2min(View view) {
-        Intent intent = new Intent(this, MainGameScreen.class);
+        Intent intent = new Intent(this, MainGameScreenActivity.class);
         intent.putExtra(GAME_DIFFICULTY, difficulty);
         intent.putExtra(GAME_MODE_TEXT, "2 minutes");
         intent.putExtra(GAME_MODE, "120");
         startActivity(intent);
     }
-
 }

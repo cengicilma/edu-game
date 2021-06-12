@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainGameScreen">
+    android:background="@color/WFD5_Diamond"
+    tools:context=".MainGameScreenActivity">
 
     <Button
         android:id="@+id/btnAnswer2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
         android:layout_marginTop="300dp"
-        android:layout_marginEnd="50dp"
         android:onClick="sumbitAnswer"
         android:text="Button"
+        app:backgroundTint="@color/WFD1_Vista_Blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAnswer1"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,11 +34,10 @@
         android:id="@+id/txtTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/txtDifficulty"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/txtTimeInSeconds"
@@ -43,50 +45,61 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
         android:text="TextView"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAnswer1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="300dp"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
         android:onClick="sumbitAnswer"
         android:text="Button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:backgroundTint="@color/WFD1_Vista_Blue"
+        app:layout_constraintBaseline_toBaselineOf="@+id/btnAnswer2"
+        app:layout_constraintEnd_toStartOf="@+id/btnAnswer2"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnAnswer3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
         android:layout_marginTop="50dp"
         android:onClick="sumbitAnswer"
         android:text="Button"
+        app:backgroundTint="@color/WFD1_Vista_Blue"
+        app:layout_constraintEnd_toStartOf="@+id/btnAnswer4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnAnswer1" />
 
     <Button
         android:id="@+id/btnAnswer4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
         android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
         android:onClick="sumbitAnswer"
         android:text="Button"
+        app:backgroundTint="@color/WFD1_Vista_Blue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btnAnswer3"
         app:layout_constraintTop_toBottomOf="@+id/btnAnswer2" />
 
     <TextView
         android:id="@+id/txtQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
         android:layout_marginTop="100dp"
         android:text="TextView"
+        android:textAlignment="center"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTimeInSeconds" />
 </androidx.constraintlayout.widget.ConstraintLayout>
