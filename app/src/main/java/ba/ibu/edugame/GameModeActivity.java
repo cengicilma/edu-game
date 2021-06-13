@@ -33,7 +33,7 @@ public class GameModeActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainGameScreenActivity.class);
         intent.putExtra(GAME_DIFFICULTY, difficulty);
         intent.putExtra(GAME_MODE_TEXT, "30 seconds");
-        intent.putExtra(GAME_MODE, "5"); //for testing, later will be 30
+        intent.putExtra(GAME_MODE, "30"); //for testing, later will be 30
         startActivity(intent);
     }
 

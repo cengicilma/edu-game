@@ -19,7 +19,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameDifficultyActivity.class);
         startActivity(intent);
     }
-
-    public void openResults(View view) {
-    }
 }

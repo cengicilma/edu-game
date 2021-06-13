@@ -18,10 +18,11 @@ public class MainGameScreenActivity extends AppCompatActivity {
     public static final String CORRECT_ANSWERS = "edugame.CORRECT_ANSWERS";
     public static final String WRONG_ANSWERS = "edugame.WRONG_ANSWERS";
     public static final String RESULTS = "edugame.RESULTS";
+    public static final String RESULT = "edugame.RESULT";
 
-    private String difficulty;
+    public static String difficulty;
     private String gameTimeText;
-    private String gameTimeInSeconds;
+    public static String gameTimeInSeconds;
     private TextView txtTimeInSeconds;
     private int time;
     private CountDownTimer cTimer;
@@ -32,6 +33,8 @@ public class MainGameScreenActivity extends AppCompatActivity {
     int numberOfQuestions = 0;
     int numberOfCorrectAnswers = 0;
     int numberOfWrongAnswers = 0;
+
+    double result;
 
 
     @Override
@@ -92,6 +95,8 @@ public class MainGameScreenActivity extends AppCompatActivity {
                 i.putExtra(CORRECT_ANSWERS, numberOfCorrectAnswers);
                 i.putExtra(WRONG_ANSWERS, numberOfWrongAnswers);
                 i.putExtra(RESULTS, finalResult());
+
+                i.putExtra(RESULT, result);
                 startActivity(i);
                 finish();
             }
@@ -153,5 +158,4 @@ public class MainGameScreenActivity extends AppCompatActivity {
         String s = Double.toString(result);
         return s;
     }
-
 }
