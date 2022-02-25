@@ -19,6 +19,12 @@ public class MainGameScreenActivity extends AppCompatActivity {
     public static final String WRONG_ANSWERS = "edugame.WRONG_ANSWERS";
     public static final String RESULTS = "edugame.RESULTS";
     public static final String RESULT = "edugame.RESULT";
+    public static final String USER_ID = "edugame.USER_ID";
+    public static final String GAME_TIME = "edugame.GAME_TIME";
+    public static final String DIFFICULTY = "edugame.DIFFICULTY";
+
+    private static String user_id;
+
 
     public static String difficulty;
     private String gameTimeText;
@@ -48,6 +54,7 @@ public class MainGameScreenActivity extends AppCompatActivity {
         difficulty = intent.getStringExtra(GameModeActivity.GAME_DIFFICULTY);
         gameTimeText = intent.getStringExtra(GameModeActivity.GAME_MODE_TEXT);
         gameTimeInSeconds = intent.getStringExtra(GameModeActivity.GAME_MODE);
+        user_id = intent.getStringExtra(GameModeActivity.USER_ID);
 
         //Set text view to chosen level
         TextView txtLevelDifficulty = findViewById(R.id.txtDifficulty);
@@ -94,9 +101,10 @@ public class MainGameScreenActivity extends AppCompatActivity {
                 i.putExtra(QUESTIONS_ASKED, numberOfQuestions);
                 i.putExtra(CORRECT_ANSWERS, numberOfCorrectAnswers);
                 i.putExtra(WRONG_ANSWERS, numberOfWrongAnswers);
-                i.putExtra(RESULTS, finalResult());
+                i.putExtra(GAME_TIME, gameTimeInSeconds);
+                i.putExtra(DIFFICULTY, difficulty);
+                i.putExtra(USER_ID, user_id);
 
-                i.putExtra(RESULT, result);
                 startActivity(i);
                 finish();
             }
@@ -153,9 +161,4 @@ public class MainGameScreenActivity extends AppCompatActivity {
         choiceButton4.setText(questionInstance.getAnswer4());
     }
 
-    public String finalResult() {
-        double result = numberOfCorrectAnswers/numberOfQuestions;
-        String s = Double.toString(result);
-        return s;
-    }
 }
